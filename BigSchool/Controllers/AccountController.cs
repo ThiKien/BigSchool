@@ -136,7 +136,9 @@ namespace BigSchool.Controllers
 
         //
         // GET: /Account/Register
+        [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Register()
         {
             return View();

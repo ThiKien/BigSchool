@@ -11,20 +11,20 @@ namespace BigSchool.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly ApplicationDbContext _dbContext;
-        public CoursesController()
-        {
-            _dbContext = new ApplicationDbContext();
-        }
         // GET: Courses
-       
+
         public ActionResult Create()
         {
-            var viewModel = new CourseViewModel()
+            var viewModel = new CourseViewModel
             {
-                Categories = _dbContext.Categories.ToList()
+                Categories = _dbcontext.Categories.ToList()
             };
             return View(viewModel);
+        }
+        private readonly ApplicationDbContext _dbcontext;
+        public CoursesController()
+        {
+            _dbcontext = new ApplicationDbContext();
         }
         [Authorize]
         [HttpPost]
@@ -33,7 +33,7 @@ namespace BigSchool.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Categories= _dbContext.Categories.ToList();
+                viewModel.Categories = _dbcontext.Categories.ToList();
                 return View("Create", viewModel);
             }
             var course = new Course
@@ -43,10 +43,10 @@ namespace BigSchool.Controllers
                 CategoryId = viewModel.Category,
                 Place = viewModel.Place
             };
-            _dbContext.Courses.Add(course);
-            _dbContext.SaveChanges();
+            _dbcontext.Courses.Add(course);
+            _dbcontext.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
-       
+
     }
 }

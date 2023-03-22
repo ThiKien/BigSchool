@@ -9,13 +9,16 @@ namespace BigSchool.ViewModel
 {
     public class CourseViewModel
     {
+
+        public int Id { get; set; }
         [Required]
         public string Place { get; set; }
         [Required]
         [FutureDate]
+
         public string Date { get; set; }
         [Required]
-        [ValidTime]
+        
         public string Time { get; set; }
         [Required]
         public byte Category { get; set; }
@@ -23,6 +26,11 @@ namespace BigSchool.ViewModel
         public DateTime GetDateTime()
         {
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
+        }
+        public class CoursesViewModel
+        {
+            public IEnumerable<Course> UpcommingCourses { get; set; }
+            public bool ShowAction { get; set; }
         }
     }
 }
