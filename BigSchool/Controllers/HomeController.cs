@@ -1,4 +1,5 @@
 ﻿using BigSchool.Models;
+using BigSchool.ViewModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -25,7 +26,7 @@ namespace BigSchool.Controllers
 
                 .Include(c => c.Lecturer).Include(c =>c.Category)
                 ;
-            var viewModel = new CoursesViewModel
+            var viewModel = new CourseViewModel
             {
                 UpcommingCourses = upcommingCourses,
                 ShowAction = User.Identity.IsAuthenticated,
